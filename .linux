@@ -1,0 +1,160 @@
+#!/usr/bin/env bash
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# removes all ppa packages
+sudo apt-get install -y ppa-purge
+
+###############################################################################
+# ADD PPA REPOSITORIES                                                            #
+###############################################################################
+
+# NVIDIA
+sudo add-apt-repository -y ppa:xorg-edgers/ppa
+
+# FIREFOX DEVELOPER EDITION
+sudo add-apt-repository -y ppa:ubuntu-mozilla-daily/firefox-aurora
+
+# Spotify repository signing key to be able to verify downloaded packages
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+
+sudo add-apt-repository -y ppa:mpstark/elementary-tweaks-daily
+sudo add-apt-repository -y ppa:webupd8team/java
+sudo add-apt-repository -y ppa:webupd8team/brackets
+sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
+sudo add-apt-repository -y ppa:webupd8team/atom
+
+# add chrome key and add to repository
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+
+###############################################################################
+# GENERAL PACKAGES                                                            #
+###############################################################################
+
+# UPDATE
+sudo apt-get update
+
+# NVIDIA
+sudo apt-get install -y nvidia-340
+
+# ZSH
+sudo apt-get install -y ZSH
+
+# JAVA
+sudo apt-get install -y python-software-properties
+sudo apt-get install -y oracle-java8-installer
+
+# NODEJS
+curl -sL https://deb.nodesource.com/setup | sudo bash -
+sudo apt-get install -y nodejs
+sudo npm install -g n
+sudo n stable
+# Common node global packages
+sudo npm install -g grunt-cli bower yo nodemon browser-sync babel
+
+# VCS
+sudo apt-get install -y git subversion
+
+# BROWSERS
+sudo apt-get install -y google-chrome-stable firefox
+
+# SPOTIFY
+sudo apt-get install -y spotify-client
+
+# ELEMENTARY TWEAKS
+sudo apt-get install -y elementary-tweaks
+
+# EDITORS
+sudo apt-get install -y brackets sublime-text-installer atom
+
+# UTILS
+sudo apt-get install -y xclip filezilla gcc make build-essentials
+sudo apt-get install -y htop handbrake unrar whois
+
+# LAMP
+sudo apt-get install -y apache2 php5 libapache2-mod-php5 php5-mcrypt
+sudo apt-get install -y mysql-server libapache2-mod-auth-mysql php5-mysql
+
+# MYSQL WILL PROMPT
+# when finished, run manualy these commands
+# sudo mysql_install_db
+# sudo /usr/bin/mysql_secure_installation
+# finally add index.php at the beginning of index files
+# sudo subl /etc/apache2/mods-enabled/dir.conf
+
+# clean up no longer required packages
+sudo apt-get autoremove -y
+
+# install meteor
+curl https://install.meteor.com/ | sh;
+
+###############################################################################
+# SETTINGS                                                                    #
+###############################################################################
+
+# Oh My Zsh (will change sh to zsh)
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+addSSHKey() {
+
+	default='~/.ssh/id_rsa.pub';
+
+	echo "Lets create your ssh keys, what´s your email?";
+
+	read email;
+
+	# GENERATE KEYGEN
+	ssh-keygen -t rsa -C "$email";
+
+	echo "Where did you created your public key? [$default] :";
+	
+	read sshkey;
+
+	SSHKEYPATH=${sshkey:-$default};
+
+	# COPY TO CLIPBOARD
+	xclip -sel clip < ~/.ssh/id_rsa.pub;
+
+	echo '##############################################################'
+	echo 'If you successfully created your sshkey, then'
+	echo 'yours newly created ssh-key is available in your clipboard,'
+	echo 'enjoy right now and setup your Github/Bitbucket SSHKEYS'
+	echo '##############################################################'
+
+}
+
+while true; do
+    read -p "Do you wish to create your ssh keys right now? [Y/n]: " yn
+    case $yn in
+        [Yy]* ) addSSHKey; break;;
+        [Nn]* ) exit;;
+        * ) addSSHKey; break;;
+    esac
+done
+
+unset addSSHKey;
+
+###############################################################################
+# USEFUL TIPS                                                                 #
+###############################################################################
+
+# list available PHP Modules
+# apt-cache search php5-
+
+# apache restart
+# sudo apache2ctl graceful
+
+# refresh fonts
+# fc-cache -f -v
+
+# terminal activity monitor
+# htop
+
+# copy a file content to clipboard
+# xclip -sel clip < [path/to/file]
