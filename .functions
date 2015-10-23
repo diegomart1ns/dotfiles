@@ -244,3 +244,13 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Install a Google Font
+function googleFontsInstall() {
+	ln -s "$GOOGLE_FONTS/$@" ~/.fonts/ && fc-cache -f -v;
+}
+
+# List a Font
+function googleFontsList() {
+	ls ${GOOGLE_FONTS};
+}

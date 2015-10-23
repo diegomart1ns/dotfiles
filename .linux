@@ -56,10 +56,13 @@ sudo apt-get install -y nodejs
 sudo npm install -g n
 sudo n stable
 # Common node global packages
-sudo npm install -g grunt-cli bower yo nodemon browser-sync babel
+sudo npm install -g grunt-cli gulp bower yo nodemon browser-sync babel
 
 # VCS
 sudo apt-get install -y git subversion
+
+# Git-flow
+sudo apt-get install -y git-flow
 
 # BROWSERS
 sudo apt-get install -y google-chrome-stable firefox
@@ -93,6 +96,9 @@ sudo apt-get autoremove -y
 
 # install meteor
 curl https://install.meteor.com/ | sh;
+
+# making npm yours =), no more sudo needed
+sudo chown -R $(whoami) ~/.npm
 
 ###############################################################################
 # SETTINGS                                                                    #
