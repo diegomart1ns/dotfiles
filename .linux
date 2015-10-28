@@ -107,6 +107,8 @@ sudo chown -R $(whoami) ~/.npm
 # Oh My Zsh (will change sh to zsh)
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+cp .zsh* ~/
+
 addSSHKey() {
 
 	default='~/.ssh/id_rsa.pub';
