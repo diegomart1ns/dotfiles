@@ -78,7 +78,7 @@ sudo apt-get install -y brackets sublime-text-installer atom
 
 # UTILS
 sudo apt-get install -y xclip filezilla gcc make build-essentials
-sudo apt-get install -y htop handbrake unrar whois
+sudo apt-get install -y htop handbrake unrar whois xclip
 
 # LAMP
 sudo apt-get install -y apache2 php5 libapache2-mod-php5 php5-mcrypt
