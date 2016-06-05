@@ -23,8 +23,8 @@ sudo add-apt-repository -y ppa:ubuntu-mozilla-daily/firefox-aurora
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
 echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 
-sudo add-apt-repository -y ppa:mpstark/elementary-tweaks-daily
-sudo add-apt-repository -y ppa:webupd8team/java
+# sudo add-apt-repository -y ppa:mpstark/elementary-tweaks-daily
+# sudo add-apt-repository -y ppa:webupd8team/java
 sudo add-apt-repository -y ppa:webupd8team/brackets
 sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
 sudo add-apt-repository -y ppa:webupd8team/atom
@@ -41,18 +41,18 @@ sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /et
 sudo apt-get update
 
 # NVIDIA
-sudo apt-get install -y nvidia-340
+# sudo apt-get install -y nvidia-340
 
 # ZSH
 sudo apt-get install -y ZSH
 
 # JAVA
-sudo apt-get install -y python-software-properties
-sudo apt-get install -y oracle-java8-installer
+# sudo apt-get install -y python-software-properties
+# sudo apt-get install -y oracle-java8-installer
 
 # NODEJS
 curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get install -y nodejs
+sudo apt-get install -y nodejs npm
 sudo npm install -g n
 sudo n stable
 # Common node global packages
@@ -71,7 +71,7 @@ sudo apt-get install -y google-chrome-stable firefox
 sudo apt-get install -y spotify-client
 
 # ELEMENTARY TWEAKS
-sudo apt-get install -y elementary-tweaks
+# sudo apt-get install -y elementary-tweaks
 
 # EDITORS
 sudo apt-get install -y brackets sublime-text-installer atom
@@ -81,8 +81,8 @@ sudo apt-get install -y xclip filezilla gcc make build-essentials
 sudo apt-get install -y htop handbrake unrar whois xclip
 
 # LAMP
-sudo apt-get install -y apache2 php5 libapache2-mod-php5 php5-mcrypt
-sudo apt-get install -y mysql-server libapache2-mod-auth-mysql php5-mysql
+# sudo apt-get install -y apache2 php5 libapache2-mod-php5 php5-mcrypt
+# sudo apt-get install -y mysql-server libapache2-mod-auth-mysql php5-mysql
 
 # MYSQL WILL PROMPT
 # when finished, run manualy these commands
