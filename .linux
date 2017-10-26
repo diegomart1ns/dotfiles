@@ -30,7 +30,7 @@ sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
 sudo add-apt-repository -y ppa:webupd8team/atom
 
 # add chrome key and add to repository
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - Shan.code-settings-sync
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 
 ###############################################################################
@@ -51,7 +51,7 @@ sudo apt-get install -y ZSH
 # sudo apt-get install -y oracle-java8-installer
 
 # NODEJS
-curl -sL https://deb.nodesource.com/setup | sudo bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 sudo apt-get install -y nodejs npm
 sudo npm install -g n
 sudo n stable
@@ -121,7 +121,7 @@ addSSHKey() {
 	ssh-keygen -t rsa -C "$email";
 
 	echo "Where did you created your public key? [$default] :";
-	
+
 	read sshkey;
 
 	SSHKEYPATH=${sshkey:-$default};

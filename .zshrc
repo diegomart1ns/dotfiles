@@ -1,1 +1,1 @@
-[ -n "$PS1" ] && source ~/.zsh_profile;
+[ -n "$PS1" ] && source ~/.profile && source ~/.zsh_profile;

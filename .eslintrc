@@ -1,0 +1,26 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 7
+  },
+  "extends": ["airbnb-base"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "document": true,
+    "window": true,
+    "process": true
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "no-tabs": 0,
+    "linebreak-style": 0
+  }
+}
