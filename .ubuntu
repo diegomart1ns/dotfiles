@@ -34,7 +34,7 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt update
 
 sudo apt install -y git git-flow xclip filezilla code gnome-tweak-tool
-sudo apt install -y build-essential htop gdebi spotify-client
+sudo apt install -y build-essential htop gdebi spotify-client vim
 sudo apt install -y whois ubuntu-restricted-extras zsh chrome-gnome-shell
 sudo apt install -y p7zip p7zip-full p7zip-rar lzma lzma-dev
 
@@ -45,6 +45,9 @@ curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools
 
 # powerlevel9k theme for ohmyzs
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+# vim
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 
 # Node
 curl -fsSL https://git.io/n-install | bash
