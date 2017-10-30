@@ -40,6 +40,8 @@ sudo apt install -y git git-flow xclip filezilla code gnome-tweak-tool
 sudo apt install -y build-essential htop gdebi spotify-client vim terminator
 sudo apt install -y whois ubuntu-restricted-extras zsh chrome-gnome-shell
 sudo apt install -y p7zip p7zip-full p7zip-rar lzma lzma-dev
+# chrome dependencies
+sudo apt install -y libappindicator1 libindicator7
 
 # sudo apt install -y wget gcc make
 
