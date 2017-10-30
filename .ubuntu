@@ -82,18 +82,20 @@ sudo apt autoremove -y
 ###############################################################################
 
 # NERDFONT
-git clone https://github.com/ryanoasis/nerd-fonts.git --depth 1 
+git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
 cd nerd-fonts
 ./install.sh FiraCode
 ./install.sh FiraMono
 ./install.sh DroidSansMono
 ./install.sh SourceCodePro
 ./install.sh UbuntuMono
+cd ..
 
 # POWERLINE
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts
+git clone --depth=1 https://github.com/powerline/fonts.git powerline-fonts
+cd powerline-fonts
 ./install.sh
+cd ..
 
 ###############################################################################
 # SNAPS                                                                      #
