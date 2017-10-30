@@ -14,6 +14,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # http_proxy=
 # https_proxy=
 
+sudo apt update
 sudo apt install -y curl
 
 # SPOTIFY
@@ -25,6 +26,8 @@ curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microso
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
+# Terminator
+sudo add-apt-repository ppa:gnome-terminator
 
 ###############################################################################
 # GENERAL PACKAGES                                                           #
@@ -34,7 +37,7 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt update
 
 sudo apt install -y git git-flow xclip filezilla code gnome-tweak-tool
-sudo apt install -y build-essential htop gdebi spotify-client vim
+sudo apt install -y build-essential htop gdebi spotify-client vim terminator
 sudo apt install -y whois ubuntu-restricted-extras zsh chrome-gnome-shell
 sudo apt install -y p7zip p7zip-full p7zip-rar lzma lzma-dev
 
@@ -51,6 +54,7 @@ git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 
 # Node
 curl -fsSL https://git.io/n-install | bash
+source ~/.bashrc
 npm i -g npm@latest
 npm i -g @angular/cli ionic cordova node-sass
 npm i -g yarn yo json-server hotel lighthouse
@@ -63,8 +67,8 @@ npm i -g eslint eslint-plugin-import eslint-config-airbnb-base flow-bin
 # curl https://install.meteor.com/ | sh
 
 # Chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome*.deb
+wget -O google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome.deb
 
 # dropbox
 # cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
@@ -73,25 +77,29 @@ sudo dpkg -i google-chrome*.deb
 # clean up no longer required packages
 sudo apt autoremove -y
 
+###############################################################################
+# FONTS		                                                              #
+###############################################################################
+
+# NERDFONT
+git clone https://github.com/ryanoasis/nerd-fonts.git --depth 1 
+cd nerd-fonts
+./install.sh FiraCode
+./install.sh FiraMono
+./install.sh DroidSansMono
+./install.sh SourceCodePro
+./install.sh UbuntuMono
+
+# POWERLINE
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
 
 ###############################################################################
 # SNAPS                                                                      #
 ###############################################################################
 
 snap install docker brackets atom gravit-designer gimp inkscape
-
-###############################################################################
-# POWERLINE FONTS                                                             #
-###############################################################################
-
-# clone
-git clone https://github.com/powerline/fonts.git --depth=1
-# install
-cd fonts
-./install.sh
-# clean-up a bit
-cd ..
-rm -rf fonts
 
 ###############################################################################
 # Softwares                                                                   #
@@ -117,12 +125,8 @@ sudo mv ./franz /opt
 code --install-extension Shan.code-settings-sync
 
 ###############################################################################
-# Themes & Icons                                                              #
+# MISC                                                                        #
 ###############################################################################
-
-installThemes() {
-	. ./gnome-themes.sh;
-}
 
 addSSHKey() {
 
@@ -165,7 +169,6 @@ confirm() {
     esac
 }
 
-confirm "Do you wish to install gnome themes (numix & arc)?" && installThemes
 confirm "Do you wish to create your ssh keys right now?" && addSSHKey
 
 unset installThemes
