@@ -58,7 +58,7 @@ git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 curl -fsSL https://git.io/n-install | bash
 source ~/.bashrc
 npm i -g npm@latest
-npm i -g @angular/cli ionic cordova node-sass
+npm i -g node-sass
 npm i -g yarn yo json-server hotel lighthouse
 npm i -g eslint eslint-plugin-import eslint-config-airbnb-base flow-bin
 
